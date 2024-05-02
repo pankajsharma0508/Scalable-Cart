@@ -13,7 +13,7 @@ jobs:
       runs-on: ubuntu-latest
       defaults:
         run: 
-          working-directory: Payment
+          working-directory: Cart
           
       steps:
         - name: Checkout Repository
