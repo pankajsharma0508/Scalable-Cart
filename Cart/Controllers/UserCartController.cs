@@ -1,8 +1,8 @@
-﻿using Cart.Data.Models;
+﻿using Cart.Data.Command;
+using Cart.Data.Models;
 using Cart.Data.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,32 +22,26 @@ namespace Cart.Controllers
 
         // GET: api/<UserCartController>
         [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        public async Task<List<UserCart>> Get() => await mediator.Send(new GetCartsQuery());
+
 
         // GET api/<UserCartController>/5
         [HttpGet("{id}")]
-        public async Task<UserCart> Get(ObjectId id) => await mediator.Send(new GetCartQuery(id));
+        public async Task<UserCart> Get(string id) => await mediator.Send(new GetCartQuery { Id = id });
 
 
         // POST api/<UserCartController>
         [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        public async Task<UserCart> Post([FromBody] UserCart cart) => await mediator.Send(new CreateUserCartCommand { Cart = cart });
+
 
         // PUT api/<UserCartController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        public async Task<UserCart> Put(int id, [FromBody] UserCart cart) => await mediator.Send(new UpdateUserCartCommand { Cart = cart });
 
         // DELETE api/<UserCartController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        public async Task<bool> Delete(string id) => await mediator.Send(new DeleteUserCartCommand { Id = id });
+        
     }
 }

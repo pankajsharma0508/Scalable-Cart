@@ -6,10 +6,11 @@ namespace Cart.Data.Query
 {
     public class GetCartQuery: IRequest<UserCart>
     {
-        public GetCartQuery(ObjectId id)
-        {
-            Id = id;    
-        }
-        public ObjectId Id { get; set; }
+        public string Id { get; set; }
+    }
+
+    public class GetCartsQuery : IRequest<List<UserCart>>
+    {
+       
     }
 }

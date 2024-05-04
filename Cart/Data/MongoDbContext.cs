@@ -20,7 +20,7 @@ namespace Cart.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<UserCart>().ToCollection("UserCart");
+            modelBuilder.Entity<UserCart>().ToCollection("UserCarts");
         }
     }
 }

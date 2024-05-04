@@ -6,6 +6,8 @@ namespace Cart.Data.Models
     {
         public ObjectId Id { get; set; }
 
+        public string CartId => this.Id.ToString();
+
         public string Name { get; set; }
     }
 }
