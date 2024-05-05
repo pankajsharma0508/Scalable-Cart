@@ -21,7 +21,7 @@ namespace Cart.Data.Handlers
         public async Task<Models.UserCart> Handle(UpdateUserCartCommand request, CancellationToken cancellationToken)
         {
             var _dbContext = GetDBContext();
-            var UserCart = await _dbContext.UserCarts.FindAsync(request.Cart.Id);
+            var UserCart = await _dbContext.UserCarts.FindAsync(request.Cart._id);
             if (UserCart != null)
             {
                 // Update specific properties
