@@ -22,7 +22,18 @@ namespace Cart.Controllers
 
         // GET: api/<UserCartController>
         [HttpGet]
-        public async Task<List<UserCart>> Get() => await mediator.Send(new GetCartsQuery());
+        public  List<UserCart> Get() { 
+            var result =  mediator.Send(new GetCartsQuery()).Result;
+            foreach(var item in result) { 
+            
+                item.TotalItem = item.Items.Sum(x=>x.Quantity);
+                item.TotalCost = item.Items.Sum(x => x.TotalCost);
+
+            }
+
+            return result;
+        
+        }
 
 
         // GET api/<UserCartController>/5
