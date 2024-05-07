@@ -43,7 +43,13 @@ namespace Cart.Controllers
 
         // POST api/<UserCartController>
         [HttpPost]
-        public async Task<UserCart> Post([FromBody] UserCart cart) => await mediator.Send(new CreateUserCartCommand { Cart = cart });
+        public  UserCart Post([FromBody] UserCart cart) { 
+            
+            cart.CartId = Guid.NewGuid().ToString();
+            var result = mediator.Send(new CreateUserCartCommand { Cart = cart }).Result;           
+
+            return result;
+        }
 
 
         // PUT api/<UserCartController>/5

@@ -12,7 +12,7 @@ namespace Cart.Data.Handlers
         public Task<UserCart?> Handle(GetCartQuery request, CancellationToken cancellationToken)
         {
             var dbContext = GetDBContext();
-            return dbContext.UserCarts.FindAsync(new ObjectId(request.Id)).AsTask();
+            return dbContext.UserCarts.FirstOrDefaultAsync( x=>x.CartId == request.Id);
         }
     }
 

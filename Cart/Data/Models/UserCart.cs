@@ -6,17 +6,19 @@ namespace Cart.Data.Models
     public class UserCart
     {
 
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public ObjectId _id { get; set; }
 
-        public string Id => this._id.ToString();
+        
+        public ObjectId Id {  get; set; }
+
+        public string CartId { get; set; }
         public string Name { get; set; }
         public Decimal TotalCost { get; set; }
         public int TotalItem { get; set; }
         public DateTime CreatedOn => DateTime.UtcNow;
 
         public List<UserCartItem> Items { get; set; }   
+
+        public string OrderStatus { get; set; }
 
         public UserCart() { 
         
@@ -30,6 +32,8 @@ namespace Cart.Data.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
+
+        public string ProductId { get; set; }
         
         public string ProductName { get; set; }
         public Decimal TotalCost { get; set; }
