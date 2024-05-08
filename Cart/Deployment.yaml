@@ -6,7 +6,7 @@ spec:
   selector:
     app: cart-service
   ports:
-    - port: 5000
+    - port: 4000
       targetPort: 8080
   type: LoadBalancer
 ---
@@ -32,8 +32,8 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: cart-service
 spec:
-  minReplicas: 2
-  maxReplicas: 6
+  minReplicas: 1
+  maxReplicas: 1
   targetCPUUtilizationPercentage: 60
   scaleTargetRef:
     apiVersion: apps/v1
